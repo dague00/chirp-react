@@ -1,0 +1,88 @@
+.main-container, .user-col, .chirps-col{
+    height: 100vh;
+    background-color: #222;
+}
+
+.chirps-box{
+    background-color: #111;
+    width: 50%;
+    height: 90vh;
+    border-radius: 5%;
+    overflow-y: hidden;
+}
+
+.post-chirp{
+    padding: 32px 50px 32px 50px;
+    width: 100%;
+    padding-bottom: 75px;
+    border-bottom: 1px #222 solid;
+}
+
+.new-chirp-label{
+    float: left;
+}
+
+.new-chirp-input{
+    width: 100%;
+    min-height: 100px;
+    vertical-align: text-top;
+    resize: none;
+    background: none;
+    color: #fff;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.new-chirp-button{
+    margin-top: 8px;
+    float: right;
+    width: 124px;
+    border-radius: 50px;
+}
+
+.chirp{
+    border-bottom: 1px #222 solid;
+    padding: 25px;
+}
+
+.chirp-user{
+    font-weight: 700;
+}
+
+.chirp-body{
+    font-size: 18px;
+}
+
+.chirp-time{
+    font-size: 12px;
+}
+
+.likes-label{
+    font-size: 24px;
+    float: right;
+}
+
+.like-button{
+    background: none;
+    border: none;
+    color: #fff;    
+}
+
+.like-button:hover{
+    color: red;
+}
+
+
+
+h3{
+    margin-top: 25px;
+    padding-left: 25px;
+    margin-bottom: 12px;
+}
+
+img{
+    border-radius: 50%;
+    float: right;
+}

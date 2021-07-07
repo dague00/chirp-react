@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AllChirps } from './components/AllChirps';
+import { Row, Col, Container } from 'reactstrap';
+import './css/bootstrap.min.css';
+import './css/style.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload. Hi hi hi!!!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container fluid className="flex main-container text-light">
+      <Row>
+        <Col xs="4" className="user-col">
+          
+        </Col>
+        <Col xs="8" className="chirps-col">
+          <h3>All chirps</h3>
+          <div className="chirps-box">
+            <AllChirps />
+          </div>
+        </Col>
+      </Row>
+      </Container>
+    );
 }
 
 export default App;
