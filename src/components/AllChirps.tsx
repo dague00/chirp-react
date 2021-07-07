@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../actions/ChirpsActions';
 import { RootStore } from '../store/store';
 
-const userImage = "https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png";  
+const userImage = 
+"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png";  
 
 export const AllChirps: React.FC = () => {
     const dispatch = useDispatch();
@@ -15,9 +16,9 @@ export const AllChirps: React.FC = () => {
       dispatch(GetAllChirps());
     };
     // eslint-disable-next-line
-    React.useEffect(() => clickListener(),[]);
+    React.useEffect( () => clickListener(), []);
     
-
+    console.log(chirpsState.chirps);
     return (
         <>
           <div className="post-chirp">
@@ -27,10 +28,10 @@ export const AllChirps: React.FC = () => {
             <button className="new-chirp-button btn btn-primary">Post</button>
           </div>
           {chirpsState.chirps && chirpsState.chirps?.map(chirp => {
-              return <div className="chirp" key={chirp.username.S}>
+               return <div className="chirp" key={chirp.username.S}>
               <Row>
                 <Col xs="2">
-                <img src={userImage && chirp.img.S} width="64px" alt="userImage"></img>
+                <img src={userImage || chirp.img.S} width="64px" alt="userImage"></img>
                 
                 </Col>
                 <Col xs="8">

@@ -2,6 +2,8 @@ import { AllChirps } from './components/AllChirps';
 import { Row, Col, Container } from 'reactstrap';
 import './css/bootstrap.min.css';
 import './css/style.css';
+import { config } from "dotenv";
+config();
 
 function App() {
   return (
