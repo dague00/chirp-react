@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux"; 
 import { ChirpsDispatchTypes, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes'
+import { databaseURL } from "../shared/constants";
 
 export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>) => {
     try {
@@ -8,7 +9,7 @@ export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>
             type: CHIRPS_LOADING
         })
         
-        const res = await axios.get('http://localhost:3000/chirp/all');
+        const res = await axios.get('http://' + databaseURL + '/chirp/all');
         dispatch({
             type: CHIRPS_SUCCESS,
             payload: res.data
