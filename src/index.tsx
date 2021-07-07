@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Amplify from 'aws-amplify';
+import { Provider } from 'react-redux';
 import config from './components/UserLogin/config.json';
+import { Store } from '../src/components/store/store';
 
 Amplify.configure({
   Auth: {
@@ -17,7 +19,9 @@ Amplify.configure({
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={Store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
