@@ -31,7 +31,7 @@ export const AllChirps: React.FC = () => {
                return <div className="chirp" key={chirp.username.S}>
               <Row>
                 <Col xs="2">
-                <img src={userImage || chirp.img.S} width="64px" alt="userImage"></img>
+                <img src={userImage || chirp.img.S} width="64px" alt="pfp goes here"></img>
                 
                 </Col>
                 <Col xs="8">

@@ -4,6 +4,7 @@ import { ChirpsDispatchTypes, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from
 //import { apiURL } from "../shared/constants";
 import { config } from "dotenv";
 import { apiURL } from "../shared/constants";
+import { formatScanResponse } from '../shared/functions';
 config();
 
 export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>) => {
@@ -20,7 +21,8 @@ export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>
         
         dispatch({
             type: CHIRPS_SUCCESS,
-            payload: res.data
+            payload: res.data.map(formatScanResponse)
+            // payload: res.data.map(formatScanResponse)
         });
     } catch (e){
         dispatch({
