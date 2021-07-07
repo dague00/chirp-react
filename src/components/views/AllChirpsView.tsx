@@ -48,9 +48,8 @@ export const AllChirpsView: React.FC = () =>{
           </div>
 
           { /* Lists all of the chirps */ }
-          {chirpsState.chirps && chirpsState.chirps?.map(chirp => {
-            console.log(chirp);
-              return <div className="chirp" key={chirp.timestamp.S}>
+          {chirpsState.chirps && chirpsState.chirps.map((chirp, index) => {
+              return <div className="chirp" key={index}>
               <Row className="mr-0">
                 <Col className="my-auto" xs="2">
                 <img className="chirp-user-img" src={"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png"}></img>
