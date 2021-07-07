@@ -17,6 +17,7 @@ export const UserChirps: React.FC = () => {
 
   return (<>
     {chirpsState.chirps && chirpsState.chirps.map((chirp, index) => {
+      console.log(chirp);
       return <div className="chirp" key={index}>
         <Row>
           <Col xs="2">
@@ -29,9 +30,9 @@ export const UserChirps: React.FC = () => {
             <br></br>
             <span className="chirp-time">{(new Date(Number(chirp.timestamp))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
           </Col>
-          {/* <Col xs="2" className="my-auto">
-            <span className="likes-label">{chirp.likes.L.length} <button className="like-button">♥</button></span>
-          </Col> */}
+          <Col xs="2" className="my-auto">
+            <span className="likes-label">{chirp.likes && chirp.likes.length} <button className="like-button">♥</button></span>
+          </Col>
         </Row>
       </div>
     })}

@@ -39,7 +39,7 @@ export const AllChirps: React.FC = () => {
                   <span className="chirp-time">{(new Date(Number(chirp.timestamp.S))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
                 </Col>
                 <Col xs="2" className="my-auto">
-                  <span className="likes-label">{chirp.likes.L.length} <button className="like-button">♥</button></span>
+                  <span className="likes-label">{chirp.likes.length} <button className="like-button">♥</button></span>
                 </Col>
               </Row>
               </div>
