@@ -1,8 +1,9 @@
 import axios from "axios";
 import { Dispatch } from "redux"; 
 import { ChirpsDispatchTypes, ChirpsType, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes'
-import { apiURL } from "../shared/constants";
-// import { formatScanResponse } from '../shared/functions';
+
+
+const apiURL = 'chirper.hopto.org:3000';
 
 
 // makes an api call that gets all chirps
@@ -13,13 +14,10 @@ export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>
         })
 
         const res = await axios.get('http://' + apiURL + '/chirp/all');
-        // const formattedResData = res.data.map(formatScanResponse);
-        // console.log(formattedResData);
         
         dispatch({
             type: CHIRPS_SUCCESS,
             payload: res.data
-            // payload: formattedResData
         });
     } catch (e){
         dispatch({
