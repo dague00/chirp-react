@@ -9,4 +9,3 @@ export const Store = createStore(
 );
 
 export type RootStore = ReturnType<typeof RootReducer>;
-// export type RootState = ReturnType<typeof Store.getState>;
