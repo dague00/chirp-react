@@ -1,11 +1,9 @@
 import axios from "axios";
 import { Dispatch } from "redux"; 
-import { ChirpsDispatchTypes, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes'
-//import { apiURL } from "../shared/constants";
-import { config } from "dotenv";
+import { ChirpsDispatchTypes, ChirpsType, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes'
 import { apiURL } from "../shared/constants";
-import { formatScanResponse } from '../shared/functions';
-config();
+// import { formatScanResponse } from '../shared/functions';
+
 
 // makes an api call that gets all chirps
 export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>) => {
@@ -14,16 +12,14 @@ export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>
             type: CHIRPS_LOADING
         })
 
-        //console.log(process.env.API_URL);
-        console.log('http://' + apiURL + '/chirp/all');
-
         const res = await axios.get('http://' + apiURL + '/chirp/all');
-        // const res = await axios.get('http://chirper.hopto.org:3000/chirp/all');
+        // const formattedResData = res.data.map(formatScanResponse);
+        // console.log(formattedResData);
         
         dispatch({
             type: CHIRPS_SUCCESS,
-            payload: res.data.map(formatScanResponse)
-            // payload: res.data.map(formatScanResponse)
+            payload: res.data
+            // payload: formattedResData
         });
     } catch (e){
         dispatch({
