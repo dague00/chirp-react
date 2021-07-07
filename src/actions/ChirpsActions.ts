@@ -8,7 +8,6 @@ export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>
         dispatch({
             type: CHIRPS_LOADING
         })
-
         const res = await axios.get('/chirp/all');
         dispatch({
             type: CHIRPS_SUCCESS,
