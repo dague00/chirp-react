@@ -1,4 +1,4 @@
-import { AllChirps } from './components/AllChirps';
+import { MainComponent } from './components/MainComponent';
 import { Row, Col, Container } from 'reactstrap';
 import './css/bootstrap.min.css';
 import './css/style.css';
@@ -10,9 +10,9 @@ function App() {
         <Col xs="4" className="user-col">
           
         </Col>
-        <Col xs="8" className="chirps-col">
-          <div className="chirps-box">
-            <AllChirps />
+        <Col xs="8" className="main-component-col">
+          <div className="main-component-box">
+            <MainComponent />
           </div>
         </Col>
       </Row>

@@ -17,13 +17,13 @@ a:hover{
 }
 
 
-.main-container, .user-col, .chirps-col{
+.main-container, .user-col, .main-component-col{
     height: 100vh;
     background-color: #222;
     overflow-x: scroll;
 }
 
-.chirps-box{
+.main-component-box{
     background-color: #111;
     width: 600px;
     height: 95vh;
@@ -34,7 +34,7 @@ a:hover{
     position: fixed;
 }
 
-#chirps-box-label{
+#main-component-title{
     background: #0e0e0e;
     color: #fff;
     padding: 32px 50px 25px 25px;  
@@ -74,8 +74,8 @@ a:hover{
 
 .new-chirp-button{
     margin-top: 8px;
+    width: 100px;
     float: right;
-    width: 6vw;
     border: 0;
     border-radius: 50px;
     color: #333;
