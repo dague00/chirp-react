@@ -6,7 +6,7 @@ export type ChirpsType = [{
     username: {S: string},
     body: {S: string},
     timestamp: {S: string},
-    likes: {L: [{S: string}]},
+    likes: [{S: string}],
     img: {S: string}
 }]
 
