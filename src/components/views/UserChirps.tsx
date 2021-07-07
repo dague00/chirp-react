@@ -17,7 +17,6 @@ export const UserChirps: React.FC = () => {
 
   return (<>
     {chirpsState.chirps && chirpsState.chirps.map((chirp, index) => {
-      console.log(chirp);
       return <div className="chirp" key={index}>
         <Row>
           <Col xs="2">

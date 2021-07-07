@@ -1,6 +1,6 @@
 import axios from "../axiosConfig";
 import { Dispatch } from "redux"; 
-import { ChirpsDispatchTypes, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes'
+import { ChirpsDispatchTypes, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes';
 
 // makes an api call that gets all chirps
 export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>) => {
