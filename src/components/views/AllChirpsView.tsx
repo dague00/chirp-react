@@ -52,7 +52,7 @@ export const AllChirpsView: React.FC = () =>{
               return <div className="chirp" key={index}>
               <Row className="mr-0">
                 <Col className="my-auto" xs="2">
-                <img className="chirp-user-img" src={"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png"}></img>
+                <img className="chirp-user-img" alt="pfp" src={"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png"}></img>
                 </Col>
                 <Col className="ml-0 pl-0" xs="8">
                   <span className="chirp-user"><a href="#">@{chirp.username.S}</a></span>
@@ -62,7 +62,7 @@ export const AllChirpsView: React.FC = () =>{
                   <span className="chirp-time">{(new Date(Number(chirp.timestamp.S))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
                 </Col>
                 <Col xs="2" className="my-auto">
-                  <span className="likes-label">{chirp.likes.L.length} <button className="like-button">♥</button></span>
+                  <span className="likes-label">{chirp.likes.L.length}<button className="like-button">♥</button></span>
                 </Col>
               </Row>
               </div>
