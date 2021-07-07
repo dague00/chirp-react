@@ -6,7 +6,7 @@ import {
   SET_SUCCESS,
   SET_USER,
   SIGN_OUT
-} from '../actions/UserActionTypes';
+} from '../../actions/UserActionTypes';
 
 const initialState: AuthState = {
   user: null,

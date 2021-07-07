@@ -4,8 +4,8 @@ import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import UserPool from './UserPool';
 import { Auth } from 'aws-amplify';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../store/store';
-import { setError, signIn } from '../store/actions/AuthActions';
+import { RootStore } from '../../store/store';
+import { setError, signIn } from '../../actions/AuthActions';
 
 export const Login: FC = () => {
   const [username, setUsername] = React.useState('');

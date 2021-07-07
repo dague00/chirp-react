@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router';
 import { useSelector } from 'react-redux';
-import { RootStore } from '../store/store';
+import { RootStore } from '../../store/store';
 
 interface Props extends RouteProps {
   component: any;

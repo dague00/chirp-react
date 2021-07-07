@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { RootStore } from '../store';
+import { RootStore } from '../store/store';
 import {
   SignInData,
   SignUpData,

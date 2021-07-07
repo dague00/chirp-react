@@ -1,26 +1,15 @@
 import React, { FC, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Signup } from './components/UserLogin/Signup';
-import { Welcome } from './components/UserLogin/Welcome';
+import { Signup } from './components/UserAuth/Signup';
+import { Welcome } from './components/UserAuth/Welcome';
 import { User } from './components/User/User';
-import { Login } from './components/UserLogin/Login';
+import { Login } from './components/UserAuth/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { PublicRoute } from './components/auth/PublicRoute';
 import { PrivateRoute } from './components/auth/PrivateRoute';
 
-// interface IAuth {
-//   isAuthenticated: boolean;
-// }
-
-function App() {
-  //global state
-  // const [isAuthenticated, setIsAuthenticated] = React.useState(false)
-  // const [user, setUser] = React.useState(null)
-
-  // const setAuthStatus = (auth:Boolean) => {
-  //   setIsAuthenticated({isAuthenticated: auth})
-  // }
+function Nav() {
   return (
     <div className="App">
       <Router>
@@ -35,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default Nav;

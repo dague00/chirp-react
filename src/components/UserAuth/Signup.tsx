@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import UserPool from './UserPool';
 import { Auth } from 'aws-amplify';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../store/store';
-import { setError, signup } from '../store/actions/AuthActions';
+import { RootStore } from '../../store/store';
+import { setError, signup } from '../../actions/AuthActions';
 
 // import Amplify, { Auth } from 'aws-amplify';
 // import config from './config.json'
