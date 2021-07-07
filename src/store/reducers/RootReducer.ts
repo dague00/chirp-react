@@ -1,8 +1,10 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
+import authReducer from './AuthReducer';
 import chirpsReducer from "./ChirpsReducer";
 
 const RootReducer = combineReducers({
-    chirps: chirpsReducer
+  auth: authReducer,
+  chirps: chirpsReducer
 });
 
 export default RootReducer;
