@@ -16,7 +16,7 @@ export const AllChirps: React.FC = () => {
       dispatch(GetAllChirps());
     };
     // eslint-disable-next-line
-    React.useEffect( () => clickListener(), []);
+    React.useEffect(clickListener, []);
     
     console.log(chirpsState.chirps);
     return (
