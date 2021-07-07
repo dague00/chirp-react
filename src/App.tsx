@@ -1,4 +1,5 @@
 import { AllChirps } from './components/AllChirps';
+import { UserChirps } from './components/UserChirps';
 import { Row, Col, Container } from 'reactstrap';
 import './css/bootstrap.min.css';
 import './css/style.css';
@@ -13,7 +14,7 @@ function App() {
         <Col xs="8" className="chirps-col">
           <h3>All chirps</h3>
           <div className="chirps-box">
-            <AllChirps />
+            <UserChirps />
           </div>
         </Col>
       </Row>
