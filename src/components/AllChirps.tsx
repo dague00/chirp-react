@@ -1,41 +1,65 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllChirps } from '../actions/ChirpsActions';
+import { GetAllChirps, PostChirp } from '../actions/ChirpsActions';
 import { RootStore } from '../store/store';
 
 const userImage = 
 "https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png";  
 
 export const AllChirps: React.FC = () => {
+    const [inputState, setInputState] = React.useState({
+      value: ""
+    });
+
     const dispatch = useDispatch();
     const chirpsState = useSelector((state: RootStore) => state.chirps);
   
-    
-    const clickListener = () => {
+    const getAllChirpsDispatcher = () => {
       dispatch(GetAllChirps());
-    };
-    // eslint-disable-next-line
-    React.useEffect(clickListener, []);
-    
-    console.log(chirpsState.chirps);
+    }
+
+    const changeListener = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setInputState({value: event.currentTarget.value});
+    }
+
+    const postChirpListener = async () => {
+       await dispatch(PostChirp(
+      {
+        "username": "redoral",
+        "body": inputState.value,
+        "timestamp": String(Date.now()),
+        "likes": [],
+        "comments": []
+      }))
+
+      setInputState({value: ""});
+      getAllChirpsDispatcher();
+    }
+
+    console.log(chirpsState);
+
+    React.useEffect(() => getAllChirpsDispatcher(),[]);
+
     return (
         <>
-          <div className="post-chirp">
-            <h5 className="new-chirp-label">Post a new chirp</h5>
-            <textarea className="new-chirp-input form-validation"></textarea>
+          <div id="chirps-box-label">
+            <h3>All chirps</h3>
+          </div>
+          <div id="post-chirp">
+            <h5 id="new-chirp-label">Post a new chirp</h5>
+            <textarea value={inputState.value} onChange={changeListener} className="new-chirp-input form-validation"></textarea>
             <br></br>
-            <button className="new-chirp-button btn btn-primary">Post</button>
+            <button onClick={postChirpListener} className="new-chirp-button btn">Post</button>
           </div>
           {chirpsState.chirps && chirpsState.chirps?.map(chirp => {
-               return <div className="chirp" key={chirp.username.S}>
-              <Row>
-                <Col xs="2">
-                <img src={userImage || chirp.img.S} width="64px" alt="pfp goes here"></img>
-                
+              return <div className="chirp" key={chirp.timestamp.S}>
+              <Row className="mr-0">
+                <Col className="my-auto" xs="2">
+                <img className="chirp-user-img" src={"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png"}></img>
                 </Col>
-                <Col xs="8">
-                  <span className="chirp-user">@{chirp.username.S}</span>
+                <Col className="ml-0 pl-0" xs="8">
+                  <span className="chirp-user"><a href="#">@{chirp.username.S}</a></span>
                   <br></br>
                   <span className="chirp-body">{chirp.body.S}</span>
                   <br></br>

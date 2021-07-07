@@ -13,7 +13,6 @@ function App() {
           
         </Col>
         <Col xs="8" className="chirps-col">
-          <h3>All chirps</h3>
           <div className="chirps-box">
             <AllChirps />
           </div>
