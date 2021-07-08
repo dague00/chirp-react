@@ -7,6 +7,72 @@ a:hover{
     color: #fff;
 }
 
+#user-box{
+    background-color: #111;
+    height: 290px;
+    width: 400px;
+    margin-top: 25px;
+    border-radius: 25px;
+    float: right;
+}
+
+
+#user-box-img{
+    background: rgb(51,51,51);
+    background: linear-gradient(270deg, rgba(51,51,51,1) 0%, rgba(17,17,17,1) 100%);
+    border-radius: 15px 15px 0 0;
+    width: inherit;
+    height: 100px;
+    margin: 0;
+    padding-top: 60px;
+    border-bottom: 3px solid #fff;
+}
+
+#user-img{
+    width: 72px;
+    border-radius: 50%;
+    padding-left: 0px;
+    border: 3px solid #fff;
+}
+
+#user-box-info, #user-box-settings, #user-box-logout{
+    padding-left: 15px;
+}
+
+#user-box-settings, #user-box-logout{
+    font-weight: 500;
+}
+
+#user-box-info {
+    padding-top: 25px;
+    border-bottom: 1px #222 solid;
+}
+
+#settings-icon, #logout-icon{
+    width: 22px;
+    filter: invert();
+    margin-right: 10px;
+}
+
+.logout-btn{
+    background-color: #ff4040;
+    padding: 8px;
+    margin-top: 0;
+    border-radius: 25px;
+    width: 120px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.logout-btn:hover{
+    background-color: #ffffff;
+    color: #ff4040;
+}
+
+.logout-btn a{
+    text-decoration: none;
+}
+
 .chirp-user-img{
     border-radius: 50%;
     float: right;
@@ -20,7 +86,7 @@ a:hover{
 .main-container, .user-col, .main-component-col{
     height: 100vh;
     background-color: #222;
-    overflow-x: scroll;
+    overflow: hidden;
 }
 
 .main-component-box{

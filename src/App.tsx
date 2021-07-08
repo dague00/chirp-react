@@ -1,4 +1,5 @@
 import { MainComponent } from './components/MainComponent';
+import { UserComponent } from './components/UserComponent';
 import { Row, Col, Container } from 'reactstrap';
 import './css/bootstrap.min.css';
 import './css/style.css';
@@ -10,8 +11,9 @@ function App() {
     <Container fluid className="flex main-container text-light">
       <Row>
         <Col xs="4" className="user-col">
-          
+          <UserComponent />
         </Col>
+        {/*  */}
         <Col xs="8" className="main-component-col">
           <div className="main-component-box">
             <MainComponent />

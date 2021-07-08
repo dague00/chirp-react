@@ -16,7 +16,7 @@ export const AllChirpsView: React.FC = () =>{
       const getAllChirpsDispatcher = () => {
         dispatch(GetAllChirps());
       }
-  
+
       const changeListener = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputState({value: event.currentTarget.value});
       }
