@@ -32,7 +32,7 @@ export const AllChirps: React.FC = () => {
                 
                 </Col>
                 <Col xs="8">
-                  <span className="chirp-user">@{chirp.username.S}</span>
+                  <span className="chirp-user">{chirp.username.S}</span>
                   <br></br>
                   <span className="chirp-body">{chirp.body.S}</span>
                   <br></br>

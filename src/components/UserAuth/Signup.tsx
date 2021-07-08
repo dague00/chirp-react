@@ -6,6 +6,7 @@ import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../store/store';
 import { setError, signup } from '../../actions/AuthActions';
+import { CreateUser } from '../../actions/UserActions';
 import chirperIcon from '../../assets/chirperIcon.png';
 
 // import Amplify, { Auth } from 'aws-amplify';
@@ -30,7 +31,6 @@ export const Signup = (): any => {
   //   passwordMismatch: false,
   //   cognito: null
   // });
-  let history = useHistory();
   const dispatch = useDispatch();
   const { error } = useSelector((state: RootStore) => state.auth);
 
@@ -46,12 +46,17 @@ export const Signup = (): any => {
     e.preventDefault();
     setLoading(true);
     await dispatch(signup({ username, password }, () => setLoading(false)));
+    await dispatch(CreateUser({
+      "username": username,
+      "bio": "Go to settings to update your bio."
+    }));
     
     if (loading === false){
       window.location.reload();
       window.location.href = "/";
     }
   };
+
   return (
     <div className="authentication-box">
     <h3 className="auth-title">

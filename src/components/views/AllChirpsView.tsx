@@ -75,7 +75,7 @@ export const AllChirpsView: React.FC = () =>{
               <img className="chirp-user-img" alt="pfp" src={"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png"}></img>
               </Col>
               <Col className="ml-0 pl-0" xs="8">
-                <span className="chirp-user"><a href={`/user/${chirp.username.S}`}>@{chirp.username.S}</a></span>
+                <span className="chirp-user"><a href={`/${chirp.username.S}`}>@{chirp.username.S}</a></span>
                 <br></br>
                 <span className="chirp-body">{chirp.body.S}</span>
                 <br></br>

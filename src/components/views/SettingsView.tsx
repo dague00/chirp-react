@@ -64,6 +64,7 @@ export const SettingsView: React.FC = () => {
  const deleteUserListener = async () => {
    if (deleteConfirm.toLowerCase() === "delete"){
     await dispatch(DeleteUser(username));
+    // add delete function for cognito
    } else {
      console.log("Delete has not been typed.")
    }

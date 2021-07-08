@@ -59,7 +59,7 @@ export const signup = (
           payload: userData
         });
       }
-      // console.log(user);
+      console.log(res.user);
     } catch (err) {
       onError();
       dispatch({
