@@ -8,6 +8,7 @@ import { RootStore } from '../../store/store';
 import { setError, signup } from '../../actions/AuthActions';
 import { CreateUser } from '../../actions/UserActions';
 import chirperIcon from '../../assets/chirperIcon.png';
+import usePasswordValidator from 'react-use-password-validator';
 
 // import Amplify, { Auth } from 'aws-amplify';
 // import config from './config.json'
@@ -24,6 +25,15 @@ import chirperIcon from '../../assets/chirperIcon.png';
 export const Signup = (): any => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isValid, setIsValid] = usePasswordValidator({
+    min: 8,
+    max: 30,
+    digits: true,
+    lowercase: true,
+    uppercase: true,
+    symbols: true,
+    spaces: false
+  });
   const [loading, setLoading] = React.useState(false);
 
   // const [errors, setErrors] = React.useState({
@@ -77,17 +87,35 @@ export const Signup = (): any => {
           value={password}
           placeholder="Password"
           type="password"
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={(e) => {
+            setPassword(e.currentTarget.value)
+            setIsValid(e.currentTarget.value)
+          }}
         ></input>
         <Row className="pl-0 m0">
           <Col className="pt-3 pl-1 ml-0">
           <span><a href="/" className="auth-switch-text">Already a user? Log in.</a></span>
           </Col>
           <Col>
-            <button className="btn auth-btn" type="submit">Sign up</button>
+            <button className="btn auth-btn" type="submit" disabled={!isValid}>Sign up</button>
           </Col>
         </Row>
       </form>
+      <div id="passReq">
+        {!isValid &&
+          <h6 className="notMet">Password Requirements</h6>
+        }
+        {isValid && 
+          <h6 className="met">Password Requirements Have Been Met</h6>
+        }
+        <ul>
+          <li>Must be between 8 and 30 characters</li>
+          <li>Must have uppercase and lowercase letters</li>
+          <li>Must have at least one number</li>
+          <li>Must have at least one symbol</li>
+          <li>Must not contain spaces</li>
+        </ul>
+      </div>
     </div>
   );
 };

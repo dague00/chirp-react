@@ -54,3 +54,18 @@
     background: #333;
 }
 
+#passReq {
+    text-align: left;
+    margin: 2em auto;
+    width: 80%;
+    font-size: small;
+    color: #888;
+}
+
+.met{
+    color: #71A797;
+}
+
+.notMet{
+    color: #FDC8AB;
+}
