@@ -3,9 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import UserPool from './UserPool';
 import { Auth } from 'aws-amplify';
+import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../store/store';
 import { setError, signIn } from '../../actions/AuthActions';
+import chirperLogo from '../../assets/chirperLogo.png';
 
 export const Login: FC = () => {
   const [username, setUsername] = React.useState('');
@@ -16,8 +18,6 @@ export const Login: FC = () => {
   //   passwordMismatch: false,
   //   cognito: null
   // });
-
-  let history = useHistory();
   const dispatch = useDispatch();
   const { error } = useSelector((state: RootStore) => state.auth);
 
@@ -29,29 +29,40 @@ export const Login: FC = () => {
     };
   }, [error, dispatch]);
 
-  const onSubmtForm = (e: FormEvent) => {
+  const onSubmtForm = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(signIn({ username, password }, () => setLoading(false)));
+    await dispatch(signIn({ username, password }, () => {setLoading(false);}));
     // const userObject = await Auth.signIn(username, password);
-
-    history.push('/user');
-  };
+    window.location.reload();
+  }
   return (
-    <div>
-      <form onSubmit={onSubmtForm}>
+    <div className="authentication-box">
+    <img src={chirperLogo} className="chirper-logo"></img>
+      <form onSubmit={onSubmtForm} className="auth-form">
         <input
+          className="form-validation login-input"
           name="username"
           value={username}
+          placeholder="Username"
           onChange={(e) => setUsername(e.currentTarget.value)}
         ></input>
         <input
+          className="form-validation login-input"
           name="password"
           value={password}
+          placeholder="Password"
+          type="password"
           onChange={(e) => setPassword(e.currentTarget.value)}
         ></input>
-        <button type="submit">Log in</button>
+        <Row className="pl-0 m0">
+          <Col className="pt-2 pl-0 ml-0">
+          <span><a href="/register" className="auth-switch-text">No account? Sign up</a></span>
+          </Col>
+          <Col>
+            <button className="btn auth-btn" type="submit">Log in</button>
+          </Col>
+        </Row>
       </form>
-    </div>
-  );
+    </div>);
 };

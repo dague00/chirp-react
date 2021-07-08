@@ -15,7 +15,9 @@ import { AllChirpsView } from './components/views/AllChirpsView'
 import { SettingsView } from './components/views/SettingsView';
 import Auth from '@aws-amplify/auth'
 import './css/bootstrap.min.css';
+import './css/login.css';
 import './css/style.css';
+
 
 function Nav() {
 
@@ -38,7 +40,7 @@ function Nav() {
           <Router>
           <Switch>
             <Route exact path="/register" component={Signup} />
-            <Route exact path="/" component={Login} />
+            <Route exact path={["/", "/login"]} component={Login} />
           </Switch>
         </Router>
           </div>
@@ -58,7 +60,7 @@ function Nav() {
           <div className="main-component-box">
           <Router>
           <Switch>
-            <Route exact path="/" component={AllChirpsView} />
+            <Route exact path={["/", "/home"]} component={AllChirpsView} />
             <Route exact path="/settings" component={SettingsView} />
             <Route path="/user" component={User} />
           </Switch>

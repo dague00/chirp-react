@@ -2,9 +2,11 @@ import React, { FC, FormEvent, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserPool from './UserPool';
 import { Auth } from 'aws-amplify';
+import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../store/store';
 import { setError, signup } from '../../actions/AuthActions';
+import chirperIcon from '../../assets/chirperIcon.png';
 
 // import Amplify, { Auth } from 'aws-amplify';
 // import config from './config.json'
@@ -40,26 +42,46 @@ export const Signup = (): any => {
     };
   }, [error, dispatch]);
 
-  const onSubmtForm = (e: FormEvent) => {
+  const onSubmtForm = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(signup({ username, password }, () => setLoading(false)));
-    history.push('/welcome');
+    await dispatch(signup({ username, password }, () => setLoading(false)));
+    
+    if (loading === false){
+      window.location.reload();
+      window.location.href = "/";
+    }
   };
   return (
-    <div>
-      <form onSubmit={onSubmtForm}>
+    <div className="authentication-box">
+    <h3 className="auth-title">
+      <img src={chirperIcon} className="chirper-icon"></img>
+      Sign up for chirper
+    </h3>
+      <form onSubmit={onSubmtForm} className="auth-form">
         <input
+          className="form-validation login-input"
           name="username"
           value={username}
+          placeholder="Username"
           onChange={(e) => setUsername(e.currentTarget.value)}
         ></input>
         <input
+          className="form-validation login-input"
           name="password"
           value={password}
+          placeholder="Password"
+          type="password"
           onChange={(e) => setPassword(e.currentTarget.value)}
         ></input>
-        <button type="submit">Signup</button>
+        <Row className="pl-0 m0">
+          <Col className="pt-3 pl-1 ml-0">
+          <span><a href="/" className="auth-switch-text">Already a user? Log in.</a></span>
+          </Col>
+          <Col>
+            <button className="btn auth-btn" type="submit">Sign up</button>
+          </Col>
+        </Row>
       </form>
     </div>
   );
