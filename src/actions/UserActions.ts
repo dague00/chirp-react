@@ -2,8 +2,11 @@ import axios from "axios";
 import { Dispatch } from "redux"; 
 import { 
     UserDispatchTypes, UserAPIType, 
-    USER_FAIL, USER_LOADING, USER_SUCCESS }
+    USER_FAIL, USER_LOADING, USER_SUCCESS, BioUpdateType }
     from './UserActionTypes';
+
+const apiURL = 'http://chirper.hopto.org:3000';
+// const apiURL = 'localhost:3000';
 
 /**
  * Makes api call for bio corresponding to username
@@ -17,7 +20,8 @@ export const GetUserBio = (username: string) => async (dispatch: Dispatch<UserDi
             type: USER_LOADING
         })
 
-        const res = await axios.get(`http://chirper.hopto.org:3000/user/${username}`)
+        const res = await axios.get(`${apiURL}/user/${username}`)
+        console.log(res.data.bio);
         dispatch({
             type: USER_SUCCESS,
             payload: res.data.bio
@@ -35,14 +39,14 @@ export const GetUserBio = (username: string) => async (dispatch: Dispatch<UserDi
  * @param chirp 
  * @returns 
  */
-export const PostUserBio = (bio: UserAPIType) => async(dispatch: Dispatch<UserDispatchTypes>) => {
-    // console.log(bio);
+export const PostUserBio = (params: UserAPIType) => async(dispatch: Dispatch<UserDispatchTypes>) => {
     try {
         dispatch({
             type: USER_LOADING
         })
 
-        await axios.post(`http://chirper.hopto.org:3000/` + bio.username, bio)
+        const body = {bio: params.bio};
+        await axios.put(`${apiURL}/user/${params.username}/bio`, body)
         .then(function (res) {
             dispatch({
                 type: USER_SUCCESS,

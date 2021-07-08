@@ -35,8 +35,10 @@ export const SettingsView: React.FC = () => {
       bypassCache: false  
     }).then(user => {
       setUsername(user.username);
+      console.log(user.username);
       getUserBioDispatcher();
       setBio(user.bio);
+      console.log(user.bio);
     })
     .catch(err => {
       console.log(err);
@@ -57,15 +59,16 @@ export const SettingsView: React.FC = () => {
   const postUserBioListener = async () => {
     await dispatch(PostUserBio({
      "username": username,
-     "bio": bio
+     "bio": updateBioInputState.value
    }));
    setUpdateBioInputState({value: ""});
    getUserBioDispatcher();
+   console.log(bio);
  }
 
 
   //============================================================================
-  // Render shit
+  // Render
   //============================================================================
   return (
   <>
@@ -85,7 +88,7 @@ export const SettingsView: React.FC = () => {
   </div>
     <div id="current-profile">
       {/*Maybe the default image could go here too?*/}
-      <p>{username}</p> {/*Could be a header, maybe?*/}
+      <p>Current profile: {username}</p> {/*Could be a header, maybe?*/}
       <p>Current bio: {bio}</p>
     </div>
     <div id="update-bio">
