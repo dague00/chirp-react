@@ -70,6 +70,20 @@ export const signup = (
   };
 };
 
+export const logout = (): ThunkAction<void, RootStore, null, AuthAction> => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading(true));
+      await Auth.signOut();
+      dispatch({
+        type: SIGN_OUT
+      });
+    } catch (error) {
+      dispatch(setLoading(false));
+    }
+  };
+};
+
 export const setError = (
   msg: string
 ): ThunkAction<void, RootStore, null, AuthAction> => {
