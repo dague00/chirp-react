@@ -3,12 +3,22 @@ import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps, PostChirp } from '../../actions/ChirpsActions';
 import { RootStore } from '../../store/store';
+import Auth from '@aws-amplify/auth';
 
 
 export const AllChirpsView: React.FC = () =>{
     const [inputState, setInputState] = React.useState({
         value: ""
       });
+
+    const [userState, setUserState] = React.useState();
+
+    React.useEffect(() => {
+      Auth.currentAuthenticatedUser({
+          bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+      }).then(user => setUserState(user.username))
+      .catch(err => console.log(err));
+  });
   
       const dispatch = useDispatch();
       const chirpsState = useSelector((state: RootStore) => state.chirps);
@@ -24,7 +34,7 @@ export const AllChirpsView: React.FC = () =>{
       const postChirpListener = async () => {
          await dispatch(PostChirp(
         {
-          "username": "redoral",
+          "username": userState,
           "body": inputState.value,
           "timestamp": String(Date.now()),
           "likes": [],

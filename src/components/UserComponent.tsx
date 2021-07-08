@@ -29,7 +29,7 @@ export const UserComponent: React.FC = () => {
             </Row>
             <Row className="mt-2 mb-3" id="user-box-info">
                 <Col>
-                    <h5 className="pt-2"><a href="#">@{userState}</a></h5>
+                    <h5 className="pt-2" id="user-box-username"><a href="#">@{userState}</a></h5>
                     <p>Hey, I'm @{userState}, and I hate my life.</p>
                 </Col>
             </Row>
