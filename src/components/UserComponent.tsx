@@ -12,7 +12,6 @@ import { useHistory, Redirect } from 'react-router-dom';
 export const UserComponent: React.FC = () => {
   const user = useSelector((state: RootStore) => state.user);
   const dispatch = useDispatch();
-  const history = useHistory();
   const getUserBioDispatcher = (username: string) => {
     dispatch(GetUserBio(username));
   };
@@ -25,8 +24,8 @@ export const UserComponent: React.FC = () => {
     Auth.currentAuthenticatedUser({
       bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
     })
-      .then((user) => {
-        getUserBioDispatcher(user.username);
+    .then((user) => {
+      getUserBioDispatcher(user.username);
       })
       .catch((err) => console.log(err));
   }, []);

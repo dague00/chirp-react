@@ -17,7 +17,7 @@
 
 .auth-title{
     width: 100%;
-    margin-top: 200px;
+    margin-top: 100px;
     text-align: left;
     float: left;
     padding-left: 64px;
@@ -68,4 +68,5 @@
 
 .notMet{
     color: #FDC8AB;
+    font-weight: bold;
 }

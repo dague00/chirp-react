@@ -137,6 +137,7 @@ export const SettingsView: React.FC = () => {
           <br></br>
           <button
             onClick={deleteUserListener}
+            disabled={!(deleteConfirm === 'delete')}
             className="delete-account-button btn"
           >
             Delete
