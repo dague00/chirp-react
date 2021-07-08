@@ -77,10 +77,6 @@ export type UserAPIType = {
   bio: string;
 }
 
-export type BioUpdateType = {
-  bio: string;
-}
-
 export interface UserLoading {
     type: typeof USER_LOADING
 }

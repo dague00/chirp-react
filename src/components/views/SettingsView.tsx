@@ -15,17 +15,18 @@ export const SettingsView: React.FC = () => {
   const [updateBioInputState, setUpdateBioInputState] = useState({
     value: ""
   });
-  const user = useSelector((state: RootStore) => state.user);
-
-
+  const userState = useSelector((state: RootStore) => state.user);
+  console.log(userState.user?.bio);
+  // console.log( userState.user && userState.user[0].bio);
+  // setBio( '' && userState.user?.bio );
 
   //============================================================================
   // Determine User from Incognito, from that determine bio
   //============================================================================
   const dispatch = useDispatch();
 
-  const getUserBioDispatcher = () => {
-    dispatch(GetUserBio(username));
+  const getUserBioDispatcher = (usr: string) => {
+    dispatch(GetUserBio(usr));
   }
 
   const determineCurrentUser = () => {
@@ -35,15 +36,19 @@ export const SettingsView: React.FC = () => {
       bypassCache: false  
     }).then(user => {
       setUsername(user.username);
-      console.log(user.username);
-      getUserBioDispatcher();
-      setBio(user.bio);
-      console.log(user.bio);
+      // console.log(user.username);
+      getUserBioDispatcher(user.username);
+      
+      
     })
     .catch(err => {
       console.log(err);
     });
+    console.log(userState.user);
+    setBio( "" &&  userState.user?.bio );
+    // console.log(userState.user?.bio);
   }
+
   //eslint-disable-next-line
   useEffect(determineCurrentUser,[]);
 
@@ -62,7 +67,7 @@ export const SettingsView: React.FC = () => {
      "bio": updateBioInputState.value
    }));
    setUpdateBioInputState({value: ""});
-   getUserBioDispatcher();
+   getUserBioDispatcher(username);
    console.log(bio);
  }
 
@@ -89,7 +94,7 @@ export const SettingsView: React.FC = () => {
     <div id="current-profile">
       {/*Maybe the default image could go here too?*/}
       <p>Current profile: {username}</p> {/*Could be a header, maybe?*/}
-      <p>Current bio: {bio}</p>
+      <p>Current bio: {userState.user?.bio}</p>
     </div>
     <div id="update-bio">
       <h5 id="update-bio-label">Change bio</h5>
