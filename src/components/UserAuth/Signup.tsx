@@ -9,6 +9,7 @@ import { setError, signup } from '../../actions/AuthActions';
 import { CreateUser } from '../../actions/UserActions';
 import chirperIcon from '../../assets/chirperIcon.png';
 import usePasswordValidator from 'react-use-password-validator';
+import axios from '../../axiosConfig';
 
 // import Amplify, { Auth } from 'aws-amplify';
 // import config from './config.json'
@@ -25,7 +26,7 @@ import usePasswordValidator from 'react-use-password-validator';
 export const Signup = (): any => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [isValid, setIsValid] = usePasswordValidator({
+  const [isPassValid, setIsPassValid] = usePasswordValidator({
     min: 8,
     max: 30,
     digits: true,
@@ -34,7 +35,21 @@ export const Signup = (): any => {
     symbols: true,
     spaces: false
   });
+  const [isUserValid, setIsUserValid] = usePasswordValidator({
+    min: 3,
+    max: 30,
+    lowercase: true,
+    uppercase: false,
+    symbols: false,
+    spaces: false
+  });
+  const [isUserUnique, setIsUserUnique] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
+
+  const checkUnique = async (attemptedName:string) => {
+    const res = await axios.get('/user/' + attemptedName);
+    res.data ? setIsUserUnique(false) : setIsUserUnique(true);
+  }
 
   // const [errors, setErrors] = React.useState({
   //   blanks: false,
@@ -79,7 +94,11 @@ export const Signup = (): any => {
           name="username"
           value={username}
           placeholder="Username"
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={(e) => {
+            setUsername(e.currentTarget.value)
+            setIsUserValid(e.currentTarget.value)
+            checkUnique(e.currentTarget.value)
+          }}
         ></input>
         <input
           className="form-validation login-input"
@@ -89,7 +108,7 @@ export const Signup = (): any => {
           type="password"
           onChange={(e) => {
             setPassword(e.currentTarget.value)
-            setIsValid(e.currentTarget.value)
+            setIsPassValid(e.currentTarget.value)
           }}
         ></input>
         <Row className="pl-0 m0">
@@ -97,15 +116,28 @@ export const Signup = (): any => {
           <span><a href="/" className="auth-switch-text">Already a user? Log in.</a></span>
           </Col>
           <Col>
-            <button className="btn auth-btn" type="submit" disabled={!isValid}>Sign up</button>
+            <button className="btn auth-btn" type="submit" disabled={!isPassValid || !isUserValid || !isUserUnique}>Sign up</button>
           </Col>
         </Row>
       </form>
       <div id="passReq">
-        {!isValid &&
+        {!isUserValid &&
+          <h6 className="notMet">Username Requirements</h6>
+        }
+        {isUserValid && 
+          <h6 className="met">Username Requirements Have Been Met</h6>
+        }
+        <ul>
+          <li className={isUserUnique ? 'met' : 'notMet'}>Must be unique</li>
+          <li>Must be between 3 and 30 characters</li>
+          <li>Must have at least one lowercase letter</li>
+          <li>May have numbers</li>
+          <li>Must not have uppercase letters, symbols, or spaces</li>
+        </ul>
+        {!isPassValid &&
           <h6 className="notMet">Password Requirements</h6>
         }
-        {isValid && 
+        {isPassValid && 
           <h6 className="met">Password Requirements Have Been Met</h6>
         }
         <ul>
