@@ -1,10 +1,6 @@
-import axios from "axios";
+import axios from "../axiosConfig";
 import { Dispatch } from "redux"; 
-import { ChirpsDispatchTypes, ChirpsType, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes'
-
-
-const apiURL = 'chirper.hopto.org:3000';
-
+import { ChirpsDispatchTypes, CHIRPS_FAIL, CHIRPS_LOADING, CHIRPS_SUCCESS } from './ChirpsActionTypes';
 
 // makes an api call that gets all chirps
 export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>) => {
@@ -12,9 +8,7 @@ export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>
         dispatch({
             type: CHIRPS_LOADING
         })
-
-        const res = await axios.get('http://' + apiURL + '/chirp/all');
-        
+        const res = await axios.get('/chirp/all');
         dispatch({
             type: CHIRPS_SUCCESS,
             payload: res.data
@@ -26,7 +20,6 @@ export const GetAllChirps = () => async (dispatch: Dispatch<ChirpsDispatchTypes>
     }
 };
 
-
 // makes an api call that gets a chirp
 export const GetChirp = (timestamp: string) => async (dispatch: Dispatch<ChirpsDispatchTypes>) => {
     try {
@@ -34,7 +27,7 @@ export const GetChirp = (timestamp: string) => async (dispatch: Dispatch<ChirpsD
             type: CHIRPS_LOADING
         })
 
-        const res = await axios.get(`http://chirper.hopto.org:3000/chirp/${timestamp}`)
+        const res = await axios.get('/chirp/${timestamp}')
         dispatch({
             type: CHIRPS_SUCCESS,
             payload: res.data
@@ -54,7 +47,7 @@ export const PostChirp = (chirp: {}) => async(dispatch: Dispatch<ChirpsDispatchT
             type: CHIRPS_LOADING
         })
 
-        await axios.post(`http://chirper.hopto.org:3000/chirp`, chirp).then(function (res) {
+        await axios.post('/chirp', chirp).then(function (res) {
             dispatch({
                 type: CHIRPS_SUCCESS,
                 payload: res.data

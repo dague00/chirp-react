@@ -6,6 +6,7 @@ import { Welcome } from './components/UserAuth/Welcome';
 import { User } from './components/User/User';
 import { Login } from './components/UserAuth/Login';
 import App from './App';
+import { SettingsView } from './components/views/SettingsView';
 import { useSelector, useDispatch } from 'react-redux';
 import { PublicRoute } from './components/auth/PublicRoute';
 import { PrivateRoute } from './components/auth/PrivateRoute';
@@ -15,10 +16,10 @@ function Nav() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/welcome" component={Welcome} />
-          <Route path="/home" component={App} />
+          <Route exact path="/register" component={Signup} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Welcome} />
+          <Route exact path="/settings" component={SettingsView} />
           <Route path="/user" component={User} />
         </Switch>
       </Router>

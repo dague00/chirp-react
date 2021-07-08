@@ -32,7 +32,7 @@ export const AllChirpsView: React.FC = () =>{
       }
   
       const postChirpListener = async () => {
-         await dispatch(PostChirp(
+        await dispatch(PostChirp(
         {
           "username": userState,
           "body": inputState.value,
@@ -40,7 +40,6 @@ export const AllChirpsView: React.FC = () =>{
           "likes": [],
           "comments": []
         }))
-  
         setInputState({value: ""});
         getAllChirpsDispatcher();
       }
