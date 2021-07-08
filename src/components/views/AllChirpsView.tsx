@@ -52,7 +52,6 @@ export const AllChirpsView: React.FC = () =>{
     }
 
     React.useEffect(() => getAllChirpsDispatcher(), []);
-    console.log(chirpsState.chirps);
 
     return (
       <>

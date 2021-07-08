@@ -76,7 +76,6 @@ export const SettingsView: React.FC = () => {
   // Render
   //============================================================================
   return (
-  
   <>
     <div id="main-component-title">
       <span>Settings</span>
