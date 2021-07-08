@@ -52,7 +52,7 @@ export const SettingsView: React.FC = () => {
   //============================================================================
   const changeListener = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUpdateBioInputState({value: event.currentTarget.value});
-  }
+  };
 
   const postUserBioListener = async () => {
     await dispatch(PostUserBio({
@@ -61,11 +61,11 @@ export const SettingsView: React.FC = () => {
    }));
    setUpdateBioInputState({value: ""});
    getUserBioDispatcher(username);
- }
+ };
 
  const deleteUserListener = async () => {
    await dispatch(DeleteUser(username));
- }
+ };
 
 
   //============================================================================
@@ -108,5 +108,5 @@ export const SettingsView: React.FC = () => {
         <button onClick={postUserBioListener} className="new-bio-button btn">Post</button>
     </div>
   </>
-  )
+  );
 }

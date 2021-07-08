@@ -18,7 +18,9 @@ function Nav() {
           <Route exact path="/register" component={Signup} />
           <Route exact path="/" component={Login} />
           <Route exact path="/home" component={Welcome} />
-          <Route exact path="/settings" component={SettingsView} />
+          <Route exact path="/settings">
+            <SettingsView />
+          </Route>
           <Route path="/user" component={User} />
         </Switch>
       </Router>
