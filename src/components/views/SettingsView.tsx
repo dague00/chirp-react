@@ -8,7 +8,7 @@ import Auth from '@aws-amplify/auth';
 
 export const SettingsView: React.FC = () => {
   //============================================================================
-  //State
+  // State
   //============================================================================
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
@@ -20,7 +20,7 @@ export const SettingsView: React.FC = () => {
 
 
   //============================================================================
-  //Determine User from Incognito, from that determine bio
+  // Determine User from Incognito, from that determine bio
   //============================================================================
   const dispatch = useDispatch();
 
@@ -43,12 +43,12 @@ export const SettingsView: React.FC = () => {
     });
   }
   //eslint-disable-next-line
-  useEffect(determineCurrentUser);
+  useEffect(determineCurrentUser,[]);
 
 
 
   //============================================================================
-  //Event Handlers
+  // Event Handlers
   //============================================================================
   const changeListener = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUpdateBioInputState({value: event.currentTarget.value});
@@ -65,13 +65,27 @@ export const SettingsView: React.FC = () => {
 
 
   //============================================================================
-  //Render shit
+  // Render shit
   //============================================================================
   return (
   <>
+  <div className="dropdown">
+    <button 
+      className="btn btn-secondary dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">
+      . . . 
+    </button>
+    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a className="dropdown-item" href="#">Delete Profile</a>
+    </div>
+  </div>
     <div id="current-profile">
       {/*Maybe the default image could go here too?*/}
-      <p>{username}</p> {/*Could be a header, maybe? See twitter profiles for inspiration*/}
+      <p>{username}</p> {/*Could be a header, maybe?*/}
       <p>Current bio: {bio}</p>
     </div>
     <div id="update-bio">

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux"; 
 import { 
-    UserDispatchTypes, UserType, 
+    UserDispatchTypes, UserAPIType, 
     USER_FAIL, USER_LOADING, USER_SUCCESS }
     from './UserActionTypes';
 
@@ -35,7 +35,7 @@ export const GetUserBio = (username: string) => async (dispatch: Dispatch<UserDi
  * @param chirp 
  * @returns 
  */
-export const PostUserBio = (bio: UserType) => async(dispatch: Dispatch<UserDispatchTypes>) => {
+export const PostUserBio = (bio: UserAPIType) => async(dispatch: Dispatch<UserDispatchTypes>) => {
     // console.log(bio);
     try {
         dispatch({

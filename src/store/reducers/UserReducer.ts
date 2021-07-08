@@ -1,11 +1,11 @@
 import { 
-    UserDispatchTypes, UserType, 
+    UserDispatchTypes, UserAPIType, 
     USER_FAIL, USER_LOADING, USER_SUCCESS } 
     from "../../actions/UserActionTypes";
 
 interface DefaultStateI{
     loading: boolean,
-    user?: UserType
+    user?: UserAPIType
 }
 
 const defaultState: DefaultStateI = {
