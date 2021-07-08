@@ -5,6 +5,8 @@ import { GetAllChirps, PostChirp } from '../../actions/ChirpsActions';
 import { GetUserBio } from '../../actions/UserActions';
 import { RootStore } from '../../store/store';
 import Auth from '@aws-amplify/auth';
+import chirperLogo from '../../assets/chirperLogo.png';
+import defaultUserImage from '../../assets/defaultUserImage.png'
 
 
 export const AllChirpsView: React.FC = () =>{
@@ -50,14 +52,13 @@ export const AllChirpsView: React.FC = () =>{
     }
 
     React.useEffect(() => getAllChirpsDispatcher(), []);
+    console.log(chirpsState.chirps);
 
     return (
       <>
       <div id="main-component-title">
-        <h3>All chirps</h3>
-      </div>
-      <div id="main-component-title">
-        <h3>All chirps</h3>
+        <span>All chirps</span>
+        <a href="/"><img src={chirperLogo} id="user-chirper-logo"></img></a>
       </div>
         { /* Post a chirp module */ }
         <div id="post-chirp">
@@ -72,7 +73,7 @@ export const AllChirpsView: React.FC = () =>{
             return <div className="chirp" key={index}>
             <Row className="mr-0">
               <Col className="my-auto" xs="2">
-              <img className="chirp-user-img" alt="pfp" src={"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png"}></img>
+              <img className="chirp-user-img" alt="pfp" src={defaultUserImage}></img>
               </Col>
               <Col className="ml-0 pl-0" xs="8">
                 <span className="chirp-user"><a href={`/${chirp.username.S}`}>@{chirp.username.S}</a></span>
@@ -87,6 +88,6 @@ export const AllChirpsView: React.FC = () =>{
             </Row>
             </div>
         })}
-      <p className="text-center pt-4 pb-2">No more twee-I mean, chirps, to show.</p>
+      <p className="text-center pt-4 pb-2">No more chirps to show.</p>
       </>)
 }

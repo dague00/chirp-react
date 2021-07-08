@@ -187,6 +187,8 @@ a:hover{
     width: inherit;
     border-radius: 25px 25px 0 0;
     z-index: 1;
+    font-size: 24px;
+    font-weight: 500;
 }
 
 #post-chirp{
@@ -230,4 +232,36 @@ a:hover{
 .delete-account-button{
     margin-top: 12px;
     float: right;
+}
+
+/* USER CHIRPS STYLES */
+#user-chirps-box{
+    background: #0e0e0e;
+    color: #fff;
+    padding: 24px 50px 24px 25px;  
+    position: fixed;
+    width: inherit;
+    border-radius: 25px 25px 0 0;
+    z-index: 1;
+    float: left;
+}
+
+#user-chirp-title{
+    padding-left: 8px;
+
+}
+
+#user-chirps-wrapper{
+    padding-top: 32px !important;
+}
+
+#user-img-title{
+    width: 32px;
+    border-radius: 50%;
+    padding-left: 0px;
+}
+
+#user-chirper-logo{
+    float: right;
+    width: 124px;
 }

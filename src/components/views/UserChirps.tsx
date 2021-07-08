@@ -3,24 +3,41 @@ import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetUsersChirps } from '../../actions/UserChirpsActions';
 import { RootStore } from '../../store/store';
+import Auth from '@aws-amplify/auth';
+import { GetUserBio } from '../../actions/UserActions';
+import chirperLogo from '../../assets/chirperLogo.png'
+import defaultUserImage from '../../assets/defaultUserImage.png'
 
 export const UserChirps: React.FC = () => {
+  const user = useSelector((state: RootStore) => state.user );
   const dispatch = useDispatch();
   const chirpsState = useSelector((state: RootStore) => state.userChirps);
 
   const loadData = () => {
     dispatch(GetUsersChirps());
   }
+    
+    // const getUserBioDispatcher = (username: string) => {
+    //   dispatch(GetUserBio(username));
+    // }
 
   // eslint-disable-next-line
   React.useEffect(() => loadData(),[]);
+  // React.useEffect(() => getUserBioDispatcher(chirpsState.chirps?.[0].username),[]);
 
   return (<>
-    {chirpsState.chirps && chirpsState.chirps.map((chirp, index) => {
-      return <div className="chirp" key={index}>
+    <div id="user-chirps-box">
+        <img id="user-img-title" alt="profile pic" src={defaultUserImage}></img>
+        <span id="user-chirp-title">Chirps by <strong>@{chirpsState.chirps?.[0].username}</strong></span>
+        <a href="/"><img src={chirperLogo} id="user-chirper-logo"></img></a>
+    </div>
+    <div id="user-chirps-wrapper" className="pt-5 mt-5">
+    {chirpsState.chirps && chirpsState.chirps.sort((a, b) => Number(a.timestamp) < Number(b.timestamp) ? 1 : -1).map((chirp, index) => {
+      return (
+      <div className="chirp user-chirps" key={index}>
         <Row>
           <Col xs="2">
-          <img alt="profile pic" src={"https://64.media.tumblr.com/1c0a550b6a6b075c35bb0f62e6b14047/580b88b831872a09-e8/s250x400/04b15506e7f9c7e11a3aa86f4373c0acb4ddb9c9.png"} width="64px"></img>
+          <img className="chirp-user-img" alt="profile pic" src={defaultUserImage} width="64px"></img>
           </Col>
           <Col xs="8">
             <span className="chirp-user">@{chirp.username}</span>
@@ -34,6 +51,8 @@ export const UserChirps: React.FC = () => {
           </Col>
         </Row>
       </div>
-    })}
+      )})}
+      <p className="text-center pt-4 pb-2">No more chirps to show.</p>
+      </div>
   </>);
 }

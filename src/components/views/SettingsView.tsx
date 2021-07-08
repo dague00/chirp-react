@@ -6,6 +6,7 @@ import { RootStore } from '../../store/store';
 import { Link } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import { logout } from '../../actions/AuthActions';
+import chirperLogo from '../../assets/chirperLogo.png';
 
 export const SettingsView: React.FC = () => {
   //============================================================================
@@ -73,6 +74,7 @@ export const SettingsView: React.FC = () => {
       })
     );
     setUpdateBioInputState({ value: '' });
+    window.location.reload();
   };
 
   const deleteUserInputListener = (
@@ -99,7 +101,10 @@ export const SettingsView: React.FC = () => {
   return (
     <>
       <div id="main-component-title">
-        <h3>Settings</h3>
+        <span>Settings</span>
+        <a href="/">
+          <img src={chirperLogo} id="user-chirper-logo"></img>
+        </a>
       </div>
       <div id="settings-content-wrapper">
         <div id="update-bio">

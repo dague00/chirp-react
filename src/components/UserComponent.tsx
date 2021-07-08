@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../store/store';
 import { Row, Col } from 'reactstrap';
 import settings from '../assets/settings.png';
+import defaultUserImage from '../assets/defaultUserImage.png';
 import Auth from '@aws-amplify/auth';
 import { GetUserBio } from '../actions/UserActions';
 import { logout } from '../actions/AuthActions';
