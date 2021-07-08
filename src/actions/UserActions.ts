@@ -62,3 +62,26 @@ export const PostUserBio = (params: UserAPIType) => async(dispatch: Dispatch<Use
         })
     }
 }
+
+export const DeleteUser = (user: string) => async(dispatch: Dispatch<UserDispatchTypes>) => {
+    try {
+        dispatch({
+            type: USER_LOADING
+        })
+        const body = {data: {username: user}};
+        await axios.delete(`${apiURL}/user/${user}`, body)
+        .then(function (res) {
+            dispatch({
+                type: USER_SUCCESS,
+                payload: res.data
+            });
+          }).catch(function (error) {
+            console.log(error);
+          });
+          
+    } catch (e){
+        dispatch({
+            type: USER_FAIL
+        })
+    }
+}

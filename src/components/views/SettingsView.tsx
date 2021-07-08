@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetUserBio, PostUserBio } from '../../actions/UserActions';
+import { DeleteUser, GetUserBio, PostUserBio } from '../../actions/UserActions';
 import { RootStore } from '../../store/store';
+import { Link } from 'react-router-dom'
 import Auth from '@aws-amplify/auth';
 
 
@@ -11,14 +12,10 @@ export const SettingsView: React.FC = () => {
   // State
   //============================================================================
   const [username, setUsername] = useState("");
-  const [bio, setBio] = useState("");
   const [updateBioInputState, setUpdateBioInputState] = useState({
     value: ""
   });
   const userState = useSelector((state: RootStore) => state.user);
-  console.log(userState.user?.bio);
-  // console.log( userState.user && userState.user[0].bio);
-  // setBio( '' && userState.user?.bio );
 
   //============================================================================
   // Determine User from Incognito, from that determine bio
@@ -38,14 +35,10 @@ export const SettingsView: React.FC = () => {
       setUsername(user.username);
       // console.log(user.username);
       getUserBioDispatcher(user.username);
-      
-      
     })
     .catch(err => {
       console.log(err);
     });
-    console.log(userState.user);
-    setBio( "" &&  userState.user?.bio );
     // console.log(userState.user?.bio);
   }
 
@@ -68,7 +61,10 @@ export const SettingsView: React.FC = () => {
    }));
    setUpdateBioInputState({value: ""});
    getUserBioDispatcher(username);
-   console.log(bio);
+ }
+
+ const deleteUserListener = async () => {
+   await dispatch(DeleteUser(username));
  }
 
 
@@ -88,13 +84,18 @@ export const SettingsView: React.FC = () => {
       . . . 
     </button>
     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a className="dropdown-item" href="#">Delete Profile</a>
+      <a className="dropdown-item" href="#">
+        <Link to={{pathname: "/home"}} onClick={deleteUserListener} >
+          Delete Profile
+        </Link>
+      </a>
     </div>
   </div>
     <div id="current-profile">
       {/*Maybe the default image could go here too?*/}
       <p>Current profile: {username}</p> {/*Could be a header, maybe?*/}
       <p>Current bio: {userState.user?.bio}</p>
+      <p></p>
     </div>
     <div id="update-bio">
       <h5 id="update-bio-label">Change bio</h5>
