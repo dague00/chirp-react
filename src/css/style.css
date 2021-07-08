@@ -1,3 +1,5 @@
+/* GLOBAL STYLES */
+
 a, a:visited{
     text-decoration: none;
     color: #fff;
@@ -6,6 +8,27 @@ a, a:visited{
 a:hover{
     color: #fff;
 }
+
+/* USER COMPONENT STYLES */
+.logout-btn, .delete-account-button{
+    background-color: #ff4040;
+    padding: 8px;
+    margin-top: 0;
+    border-radius: 25px;
+    width: 120px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.logout-btn:hover, .delete-account-button:hover{
+    background-color: #ffffff;
+    color: #ff4040;
+}
+
+.logout-btn a{
+    text-decoration: none;
+}
+
 
 #user-box{
     background-color: #111;
@@ -59,23 +82,11 @@ a:hover{
     margin-right: 10px;
 }
 
-.logout-btn{
-    background-color: #ff4040;
-    padding: 8px;
-    margin-top: 0;
-    border-radius: 25px;
-    width: 120px;
-    font-weight: 700;
-    color: #fff;
-}
 
-.logout-btn:hover{
-    background-color: #ffffff;
-    color: #ff4040;
-}
-
-.logout-btn a{
-    text-decoration: none;
+/* MAIN COMPONENT STYLES */
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent;
 }
 
 .chirp-user-img{
@@ -86,7 +97,6 @@ a:hover{
     margin-right: auto;
     display: block;
 }
-
 
 .main-container, .user-col, .main-component-col{
     height: 100vh;
@@ -105,33 +115,7 @@ a:hover{
     position: fixed;
 }
 
-#main-component-title{
-    background: #0e0e0e;
-    color: #fff;
-    padding: 34px 50px 25px 25px;  
-    position: fixed;
-    width: inherit;
-    border-radius: 25px 25px 0 0;
-    z-index: 1;
-}
-
-::-webkit-scrollbar {
-    width: 0;  
-    background: transparent;
-}
-
-#post-chirp{
-    padding: 120px 50px 32px 50px;
-    width: 100%;
-    padding-bottom: 75px;
-    border-bottom: 1px #222 solid;
-}
-
-#new-chirp-label{
-    float: left;
-}
-
-.new-chirp-input{
+.new-chirp-input, .new-bio-input{
     width: 100%;
     min-height: 100px;
     resize: none;
@@ -143,7 +127,7 @@ a:hover{
     overflow: hidden;
 }
 
-.new-chirp-button{
+.new-chirp-button, .new-bio-button{
     margin-top: 8px;
     width: 100px;
     float: right;
@@ -154,7 +138,7 @@ a:hover{
     background: #fff;
 }
 
-.new-chirp-button:hover{
+.new-chirp-button:hover, .new-bio-button:hover{
     color: #fff;
     background: #333;
 }
@@ -193,4 +177,57 @@ a:hover{
 
 .like-button:hover{
     color: red;
+}
+
+#main-component-title{
+    background: #0e0e0e;
+    color: #fff;
+    padding: 34px 50px 25px 25px;  
+    position: fixed;
+    width: inherit;
+    border-radius: 25px 25px 0 0;
+    z-index: 1;
+}
+
+#post-chirp{
+    padding: 120px 50px 32px 50px;
+    width: 100%;
+    padding-bottom: 75px;
+    border-bottom: 1px #222 solid;
+}
+
+#new-chirp-label{
+    float: left;
+}
+
+/* SETTINGS STYLES */
+#settings-content-wrapper{
+    padding-top: 90px;
+}
+
+#update-bio{
+    height: 275px;
+    padding: 50px;
+    border-bottom: 1px #222 solid;
+}
+
+#delete-account{
+    height: 250px;
+    padding: 50px;
+}
+
+.delete-account-confirmation{
+    width: 100%;
+    min-height: 25px;
+    background: none;
+    color: #fff;
+    padding: 12px;
+    border: 1px solid #222;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.delete-account-button{
+    margin-top: 12px;
+    float: right;
 }

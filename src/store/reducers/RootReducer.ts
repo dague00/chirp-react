@@ -9,8 +9,7 @@ import UserChirpsReducer from "./UserChirpsReducer";
 const RootReducer = combineReducers({
   auth: authReducer,
   chirps: chirpsReducer,
-  user: userReducer
-
+  user: userReducer,
   userChirps: UserChirpsReducer
 });
 

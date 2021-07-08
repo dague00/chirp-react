@@ -1,21 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../store/store';
 import { Row, Col } from 'reactstrap';
-import logout from '../assets/logout.png'
 import settings from '../assets/settings.png'
 import Auth from '@aws-amplify/auth';
+import { GetUserBio } from '../actions/UserActions';
 
-export const UserComponent: React.FC = () => {
-    const [userState, setUserState] = React.useState("");
-
+export const UserComponent: React.FC = () => {    
+      const user = useSelector((state: RootStore) => state.user);
+      const dispatch = useDispatch();
     
-    React.useEffect(() => {
+      const getUserBioDispatcher = (username: string) => {
+        dispatch(GetUserBio(username));
+      }
+    
+      React.useEffect(() => {
         Auth.currentAuthenticatedUser({
-            bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-        }).then(user => setUserState(user.username))
-        .catch(err => console.log(err));
-    });
+          bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+        }).then(user => {getUserBioDispatcher(user.username);})
+          .catch(err => console.log(err));
+      }, []);
 
     return (
         <div id="user-box" className="p-0">
@@ -29,14 +33,14 @@ export const UserComponent: React.FC = () => {
             </Row>
             <Row className="mt-2 mb-3" id="user-box-info">
                 <Col>
-                    <h5 className="pt-2" id="user-box-username"><a href="#">@{userState}</a></h5>
-                    <p>Hey, I'm @{userState}, and I hate my life.</p>
+                    <h5 className="pt-2" id="user-box-username"><a href="#">@{user.user?.username}</a></h5>
+                    <p>{user.user?.bio}</p>
                 </Col>
             </Row>
             {/* User settings & logout button */}
             <Row id="user-box-settings">
                 <Col className="settings-icon-col pt-2">
-                <span><img src={settings} id="settings-icon"></img><a href="#">Settings</a></span>
+                <span><img src={settings} id="settings-icon"></img><a href="/settings">Settings</a></span>
                 </Col>
                 <Col>
                 <a href="#"><span className="float-right mr-3 logout-btn btn">Logout</span></a>

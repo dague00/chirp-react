@@ -15,16 +15,12 @@ export const SettingsView: React.FC = () => {
   const [updateBioInputState, setUpdateBioInputState] = useState({
     value: ""
   });
-  const userState = useSelector((state: RootStore) => state.user);
+  const [deleteConfirm, setDeleteConfirmState] = useState("");
 
   //============================================================================
   // Determine User from Incognito, from that determine bio
   //============================================================================
   const dispatch = useDispatch();
-
-  const getUserBioDispatcher = (usr: string) => {
-    dispatch(GetUserBio(usr));
-  }
 
   const determineCurrentUser = () => {
     Auth.currentAuthenticatedUser({
@@ -34,7 +30,6 @@ export const SettingsView: React.FC = () => {
     }).then(user => {
       setUsername(user.username);
       // console.log(user.username);
-      getUserBioDispatcher(user.username);
     })
     .catch(err => {
       console.log(err);
@@ -60,11 +55,18 @@ export const SettingsView: React.FC = () => {
      "bio": updateBioInputState.value
    }));
    setUpdateBioInputState({value: ""});
-   getUserBioDispatcher(username);
+ }
+
+ const deleteUserInputListener = (event: React.ChangeEvent<HTMLInputElement>) => {
+   setDeleteConfirmState(event.currentTarget.value);
  }
 
  const deleteUserListener = async () => {
-   await dispatch(DeleteUser(username));
+   if (deleteConfirm.toLowerCase() === "delete"){
+    await dispatch(DeleteUser(username));
+   } else {
+     console.log("Delete has not been typed.")
+   }
  }
 
 
@@ -72,40 +74,36 @@ export const SettingsView: React.FC = () => {
   // Render
   //============================================================================
   return (
+  
   <>
-  <div className="dropdown">
-    <button 
-      className="btn btn-secondary dropdown-toggle"
-      type="button"
-      id="dropdownMenuButton"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false">
-      . . . 
-    </button>
-    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a className="dropdown-item" href="#">
-        <Link to={{pathname: "/home"}} onClick={deleteUserListener} >
-          Delete Profile
-        </Link>
-      </a>
+    <div id="main-component-title">
+      <h3>Settings</h3>
     </div>
-  </div>
-    <div id="current-profile">
-      {/*Maybe the default image could go here too?*/}
-      <p>Current profile: {username}</p> {/*Could be a header, maybe?*/}
-      <p>Current bio: {userState.user?.bio}</p>
-      <p></p>
-    </div>
-    <div id="update-bio">
-      <h5 id="update-bio-label">Change bio</h5>
-        <textarea 
-          value={updateBioInputState.value} 
-          onChange={changeListener} 
-          className="new-bio-input form-validation">
-        </textarea>
-        <br></br>
-        <button onClick={postUserBioListener} className="new-bio-button btn">Post</button>
+    <div id="settings-content-wrapper">
+      <div id="update-bio">
+        <h5 id="update-bio-label">Update your bio</h5>
+          <textarea 
+            value={updateBioInputState.value} 
+            onChange={changeListener} 
+            className="new-bio-input form-validation">
+          </textarea>
+          <br></br>
+          <button onClick={postUserBioListener} className="new-bio-button btn">Update</button>
+      </div>
+      <div id="delete-account">
+        <h5 id="update-bio-label">Delete your account</h5>
+        <p>Are you sure you want to delete your account? Deleting your account
+          is permanent and cannot be undone.
+        </p>
+        <p>Type in <strong>delete</strong> in the textbox below to confirm deletion.</p>
+          <input
+            value={deleteConfirm} 
+            onChange={deleteUserInputListener} 
+            className="delete-account-confirmation form-validation">
+          </input>
+          <br></br>
+          <button onClick={deleteUserListener} className="delete-account-button btn">Delete</button>
+      </div>
     </div>
   </>
   )
