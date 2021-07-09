@@ -64,3 +64,28 @@ export const PostChirp = (chirp: {}) => async(dispatch: Dispatch<ChirpsDispatchT
         })
     }
 }
+
+// makes an api call that posts a chirp
+export const DeleteChirp = (timestamp: string) => async(dispatch: Dispatch<ChirpsDispatchTypes>) => {
+    try {
+        dispatch({
+            type: CHIRPS_LOADING
+        })
+
+        await axios.delete(`/chirp/${timestamp}`).then(function (res) {
+            dispatch({
+                type: CHIRPS_SUCCESS,
+                payload: res.data
+            });
+            console.log(res);
+          }).catch(function (error) {
+            console.log(error);
+          });
+          
+        
+    } catch (e){
+        dispatch({
+            type: CHIRPS_FAIL
+        })
+    }
+}

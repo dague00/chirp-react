@@ -1,12 +1,13 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllChirps, PostChirp } from '../../actions/ChirpsActions';
+import { DeleteChirp, GetAllChirps, PostChirp } from '../../actions/ChirpsActions';
 import { GetUserBio } from '../../actions/UserActions';
 import { RootStore } from '../../store/store';
 import Auth from '@aws-amplify/auth';
 import chirperLogo from '../../assets/chirperLogo.png';
 import defaultUserImage from '../../assets/defaultUserImage.png'
+import trashIcon from '../../assets/trashIcon.png'
 
 
 export const AllChirpsView: React.FC = () =>{
@@ -14,8 +15,10 @@ export const AllChirpsView: React.FC = () =>{
         value: ""
       });
 
+    let currentListItem = "";
+
     const dispatch = useDispatch();
-    const chirpsState = useSelector((state: RootStore) => state.chirps);
+
 
     const getAllChirpsDispatcher = () => {
       dispatch(GetAllChirps());
@@ -26,11 +29,17 @@ export const AllChirpsView: React.FC = () =>{
     const getUserBioDispatcher = (username: string) => {
       dispatch(GetUserBio(username));
     }
+
+    const deleteChirpDispatcher = async () => {
+      console.log(currentListItem);
+      await dispatch(DeleteChirp(currentListItem));
+      window.location.reload();
+    }
   
     React.useEffect(() => {
       Auth.currentAuthenticatedUser({
         bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-      }).then(user => {getUserBioDispatcher(user.username);})
+      }).then(user => getUserBioDispatcher(user.username))
         .catch(err => console.log(err));
     }, []);
 
@@ -52,6 +61,7 @@ export const AllChirpsView: React.FC = () =>{
     }
 
     React.useEffect(() => getAllChirpsDispatcher(), []);
+    const chirpsState = useSelector((state: RootStore) => state.chirps);
 
     return (
       <>
@@ -71,7 +81,7 @@ export const AllChirpsView: React.FC = () =>{
         {chirpsState.chirps && chirpsState.chirps.sort((a, b) => Number(a.timestamp.S) < Number(b.timestamp.S) ? 1 : -1).map((chirp, index) => {
             return <div className="chirp" key={index}>
             <Row className="mr-0">
-              <Col className="my-auto" xs="2">
+              <Col xs="2">
               <img className="chirp-user-img" alt="pfp" src={defaultUserImage}></img>
               </Col>
               <Col className="ml-0 pl-0" xs="8">
@@ -79,10 +89,14 @@ export const AllChirpsView: React.FC = () =>{
                 <br></br>
                 <span className="chirp-body">{chirp.body.S}</span>
                 <br></br>
-                <span className="chirp-time">{(new Date(Number(chirp.timestamp.S))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
+                <span className="chirp-time">{(new Date(Number(chirp.timestamp.S))).toLocaleString()}</span>
               </Col>
-              <Col xs="2" className="my-auto">
-                <span className="likes-label">{chirp.likes.L.length}<button className="like-button">♥</button></span>
+              <Col xs="2" >
+                {(() => { if (user.user?.username == chirp.username.S) {
+                  console.log(chirp.username.S)
+                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp.S; deleteChirpDispatcher();}}><img src={trashIcon} height="18px"></img></button></>
+                }
+                })()}
               </Col>
             </Row>
             </div>

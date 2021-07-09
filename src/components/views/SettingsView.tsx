@@ -99,13 +99,11 @@ export const SettingsView: React.FC = () => {
   // Render
   //============================================================================
   return (
-    <>
-      <div id="main-component-title">
-        <span>Settings</span>
-        <a href="/">
-          <img src={chirperLogo} id="user-chirper-logo"></img>
-        </a>
-      </div>
+  <>
+    <div id="main-component-title">
+      <span>Settings</span>
+      <a href="/"><img src={chirperLogo} id="user-chirper-logo"></img></a>
+    </div>
       <div id="settings-content-wrapper">
         <div id="update-bio">
           <h5 id="update-bio-label">Update your bio</h5>

@@ -7,14 +7,24 @@ import Auth from '@aws-amplify/auth';
 import { GetUserBio } from '../../actions/UserActions';
 import chirperLogo from '../../assets/chirperLogo.png'
 import defaultUserImage from '../../assets/defaultUserImage.png'
+import {DeleteChirp} from '../../actions/ChirpsActions';
+import trashIcon from '../../assets/trashIcon.png'
 
 export const UserChirps: React.FC = () => {
   const user = useSelector((state: RootStore) => state.user );
   const dispatch = useDispatch();
   const chirpsState = useSelector((state: RootStore) => state.userChirps);
 
+  let currentListItem = "";
+
   const loadData = () => {
     dispatch(GetUsersChirps());
+  }
+
+  const deleteChirpDispatcher = async () => {
+    console.log(currentListItem);
+    await dispatch(DeleteChirp(currentListItem));
+    window.location.reload();
   }
     
     // const getUserBioDispatcher = (username: string) => {
@@ -39,15 +49,18 @@ export const UserChirps: React.FC = () => {
           <Col xs="2">
           <img className="chirp-user-img" alt="profile pic" src={defaultUserImage} width="64px"></img>
           </Col>
-          <Col xs="8">
+          <Col className="ml-0 pl-0" xs="8">
             <span className="chirp-user">@{chirp.username}</span>
             <br></br>
             <span className="chirp-body">{chirp.body}</span>
             <br></br>
-            <span className="chirp-time">{(new Date(Number(chirp.timestamp))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
+            <span className="chirp-time">{(new Date(Number(chirp.timestamp))).toLocaleString()}</span>
           </Col>
-          <Col xs="2" className="my-auto">
-            <span className="likes-label">{chirp.likes && chirp.likes.length} <button className="like-button">♥</button></span>
+          <Col xs="2">
+          {(() => { if (user.user?.username == chirp.username) {
+                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp; deleteChirpDispatcher();}}><img src={trashIcon} height="18px"></img></button></>
+                }
+                })()}
           </Col>
         </Row>
       </div>
