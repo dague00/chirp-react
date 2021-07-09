@@ -45,7 +45,7 @@ export const UserComponent: React.FC = () => {
       <Row className="mt-2 mb-3" id="user-box-info">
         <Col>
           <h5 className="pt-2" id="user-box-username">
-            <a href="#">@{user.user?.username}</a>
+            <a href={`/${user.user?.username}`}>@{user.user?.username}</a>
           </h5>
           <p>{user.user?.bio}</p>
         </Col>

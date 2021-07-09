@@ -7,14 +7,24 @@ import Auth from '@aws-amplify/auth';
 import { GetUserBio } from '../../actions/UserActions';
 import chirperLogo from '../../assets/chirperLogo.png'
 import defaultUserImage from '../../assets/defaultUserImage.png'
+import {DeleteChirp} from '../../actions/ChirpsActions';
+import trashIcon from '../../assets/trashIcon.png'
 
 export const UserChirps: React.FC = () => {
   const user = useSelector((state: RootStore) => state.user );
   const dispatch = useDispatch();
   const chirpsState = useSelector((state: RootStore) => state.userChirps);
 
+  let currentListItem = "";
+
   const loadData = () => {
     dispatch(GetUsersChirps());
+  }
+
+  const deleteChirpDispatcher = async () => {
+    console.log(currentListItem);
+    await dispatch(DeleteChirp(currentListItem));
+    window.location.reload();
   }
     
     // const getUserBioDispatcher = (username: string) => {
@@ -47,7 +57,10 @@ export const UserChirps: React.FC = () => {
             <span className="chirp-time">{(new Date(Number(chirp.timestamp))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
           </Col>
           <Col xs="2" className="my-auto">
-            <span className="likes-label">{chirp.likes && chirp.likes.length} <button className="like-button">♥</button></span>
+          {(() => { if (user.user?.username == chirp.username) {
+                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp; deleteChirpDispatcher();}}><img src={trashIcon} height="24px"></img></button></>
+                }
+                })()}
           </Col>
         </Row>
       </div>

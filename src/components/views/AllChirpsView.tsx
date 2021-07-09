@@ -94,7 +94,7 @@ export const AllChirpsView: React.FC = () =>{
               <Col xs="2" className="my-auto">
                 {(() => { if (user.user?.username == chirp.username.S) {
                   console.log(chirp.username.S)
-                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp.S; deleteChirpDispatcher();}}><img src={trashIcon} height="28px"></img></button></>
+                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp.S; deleteChirpDispatcher();}}><img src={trashIcon} height="24px"></img></button></>
                 }
                 })()}
               </Col>
