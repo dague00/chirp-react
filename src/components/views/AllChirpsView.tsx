@@ -81,7 +81,7 @@ export const AllChirpsView: React.FC = () =>{
         {chirpsState.chirps && chirpsState.chirps.sort((a, b) => Number(a.timestamp.S) < Number(b.timestamp.S) ? 1 : -1).map((chirp, index) => {
             return <div className="chirp" key={index}>
             <Row className="mr-0">
-              <Col className="my-auto" xs="2">
+              <Col xs="2">
               <img className="chirp-user-img" alt="pfp" src={defaultUserImage}></img>
               </Col>
               <Col className="ml-0 pl-0" xs="8">
@@ -89,12 +89,12 @@ export const AllChirpsView: React.FC = () =>{
                 <br></br>
                 <span className="chirp-body">{chirp.body.S}</span>
                 <br></br>
-                <span className="chirp-time">{(new Date(Number(chirp.timestamp.S))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
+                <span className="chirp-time">{(new Date(Number(chirp.timestamp.S))).toLocaleString()}</span>
               </Col>
-              <Col xs="2" className="my-auto">
+              <Col xs="2" >
                 {(() => { if (user.user?.username == chirp.username.S) {
                   console.log(chirp.username.S)
-                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp.S; deleteChirpDispatcher();}}><img src={trashIcon} height="24px"></img></button></>
+                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp.S; deleteChirpDispatcher();}}><img src={trashIcon} height="18px"></img></button></>
                 }
                 })()}
               </Col>

@@ -49,16 +49,16 @@ export const UserChirps: React.FC = () => {
           <Col xs="2">
           <img className="chirp-user-img" alt="profile pic" src={defaultUserImage} width="64px"></img>
           </Col>
-          <Col xs="8">
+          <Col className="ml-0 pl-0" xs="8">
             <span className="chirp-user">@{chirp.username}</span>
             <br></br>
             <span className="chirp-body">{chirp.body}</span>
             <br></br>
-            <span className="chirp-time">{(new Date(Number(chirp.timestamp))).toLocaleString('en-US', {timeZone: 'EST'})}</span>
+            <span className="chirp-time">{(new Date(Number(chirp.timestamp))).toLocaleString()}</span>
           </Col>
-          <Col xs="2" className="my-auto">
+          <Col xs="2">
           {(() => { if (user.user?.username == chirp.username) {
-                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp; deleteChirpDispatcher();}}><img src={trashIcon} height="24px"></img></button></>
+                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp; deleteChirpDispatcher();}}><img src={trashIcon} height="18px"></img></button></>
                 }
                 })()}
           </Col>
