@@ -164,19 +164,10 @@ a:hover{
     font-size: 14px;
 }
 
-.likes-label{
-    font-size: 18px;
-    float: right;
-}
-
-.like-button{
+.delete-button{
     background: none;
-    border: none;
-    color: #fff;    
-}
-
-.like-button:hover{
-    color: red;
+    border: 0;
+    float: right;
 }
 
 #main-component-title{
