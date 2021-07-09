@@ -73,10 +73,7 @@ function Nav() {
       </Row>
       </Container>
     );
-  }
-
-  return null;
-
+    }
 }
 
 export default Nav;
