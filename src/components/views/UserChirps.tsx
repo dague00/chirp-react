@@ -33,12 +33,13 @@ export const UserChirps: React.FC = () => {
 
   // eslint-disable-next-line
   React.useEffect(() => loadData(),[]);
+  console.log(chirpsState.chirps);
   // React.useEffect(() => getUserBioDispatcher(chirpsState.chirps?.[0].username),[]);
 
   return (<>
     <div id="user-chirps-box">
         <img id="user-img-title" alt="profile pic" src={defaultUserImage}></img>
-        <span id="user-chirp-title">Chirps by <strong>@{chirpsState.chirps?.[0].username}</strong></span>
+        <span id="user-chirp-title">Chirps by <strong>@{window.location.pathname.slice(1)}</strong></span>
         <a href="/"><img src={chirperLogo} id="user-chirper-logo"></img></a>
     </div>
     <div id="user-chirps-wrapper" className="pt-5 mt-5">
