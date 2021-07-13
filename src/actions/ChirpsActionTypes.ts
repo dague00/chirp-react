@@ -3,11 +3,11 @@ export const CHIRPS_FAIL = "CHIRPS_FAIL";
 export const CHIRPS_SUCCESS = "CHIRPS_SUCCESS";
 
 export type ChirpsType = [{
-    username: {S: string},
-    body: {S: string},
-    timestamp: {S: string},
-    likes: {L: [{S: string}]},
-    img: {S: string}
+    username: string,
+    body: string,
+    timestamp: string,
+    likes: string,
+    img: string
 }]
 
 export type Chirps = {
