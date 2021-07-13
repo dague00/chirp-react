@@ -1,4 +1,4 @@
-import { MainComponent } from './components/MainComponent';
+
 import { Row, Col, Container } from 'reactstrap';
 import { config } from "dotenv";
 config();
@@ -10,7 +10,6 @@ function App() {
       <Row>
         <Col xs="8" className="main-component-col">
           <div className="main-component-box">
-            <MainComponent />
           </div>
         </Col>
       </Row>

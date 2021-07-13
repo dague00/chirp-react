@@ -78,23 +78,23 @@ export const AllChirpsView: React.FC = () =>{
         </div>
 
         { /* Lists all of the chirps */ }
-        {chirpsState.chirps && chirpsState.chirps.sort((a, b) => Number(a.timestamp.S) < Number(b.timestamp.S) ? 1 : -1).map((chirp, index) => {
+        {chirpsState.chirps && chirpsState.chirps.sort((a, b) => Number(a.timestamp) < Number(b.timestamp) ? 1 : -1).map((chirp, index) => {
             return <div className="chirp" key={index}>
             <Row className="mr-0">
               <Col xs="2">
               <img className="chirp-user-img" alt="pfp" src={defaultUserImage}></img>
               </Col>
               <Col className="ml-0 pl-0" xs="8">
-                <span className="chirp-user"><a href={`/${chirp.username.S}`}>@{chirp.username.S}</a></span>
+                <span className="chirp-user"><a href={`/${chirp.username}`}>@{chirp.username}</a></span>
                 <br></br>
-                <span className="chirp-body">{chirp.body.S}</span>
+                <span className="chirp-body">{chirp.body}</span>
                 <br></br>
-                <span className="chirp-time">{(new Date(Number(chirp.timestamp.S))).toLocaleString()}</span>
+                <span className="chirp-time">{(new Date(Number(chirp.timestamp))).toLocaleString()}</span>
               </Col>
               <Col xs="2" >
-                {(() => { if (user.user?.username == chirp.username.S) {
-                  console.log(chirp.username.S)
-                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp.S; deleteChirpDispatcher();}}><img src={trashIcon} height="18px"></img></button></>
+                {(() => { if (user.user?.username == chirp.username) {
+                  console.log(chirp.username)
+                  return <><button className="delete-button" onClick={() => {currentListItem = chirp.timestamp; deleteChirpDispatcher();}}><img src={trashIcon} height="18px"></img></button></>
                 }
                 })()}
               </Col>
