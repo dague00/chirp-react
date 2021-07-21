@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/dague00/chirp-react/static/css/main.b18ecf25.chunk.css",
+    "main.js": "/dague00/chirp-react/static/js/main.f3991f7d.chunk.js",
+    "main.js.map": "/dague00/chirp-react/static/js/main.f3991f7d.chunk.js.map",
+    "runtime-main.js": "/dague00/chirp-react/static/js/runtime-main.7999e13b.js",
+    "runtime-main.js.map": "/dague00/chirp-react/static/js/runtime-main.7999e13b.js.map",
+    "static/js/2.5064b3b3.chunk.js": "/dague00/chirp-react/static/js/2.5064b3b3.chunk.js",
+    "static/js/2.5064b3b3.chunk.js.map": "/dague00/chirp-react/static/js/2.5064b3b3.chunk.js.map",
+    "static/js/3.8300fdd7.chunk.js": "/dague00/chirp-react/static/js/3.8300fdd7.chunk.js",
+    "static/js/3.8300fdd7.chunk.js.map": "/dague00/chirp-react/static/js/3.8300fdd7.chunk.js.map",
+    "index.html": "/dague00/chirp-react/index.html",
+    "static/css/main.b18ecf25.chunk.css.map": "/dague00/chirp-react/static/css/main.b18ecf25.chunk.css.map",
+    "static/js/2.5064b3b3.chunk.js.LICENSE.txt": "/dague00/chirp-react/static/js/2.5064b3b3.chunk.js.LICENSE.txt",
+    "static/media/chirperIcon.8f1eea0a.png": "/dague00/chirp-react/static/media/chirperIcon.8f1eea0a.png",
+    "static/media/chirperLogo.972c66ea.png": "/dague00/chirp-react/static/media/chirperLogo.972c66ea.png",
+    "static/media/defaultUserImage.4aa827c3.png": "/dague00/chirp-react/static/media/defaultUserImage.4aa827c3.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7999e13b.js",
+    "static/js/2.5064b3b3.chunk.js",
+    "static/css/main.b18ecf25.chunk.css",
+    "static/js/main.f3991f7d.chunk.js"
+  ]
+}

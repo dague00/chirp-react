@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+# /build - we want this on the repo
 
 # misc
 .DS_Store
