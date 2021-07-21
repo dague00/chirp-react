@@ -47,19 +47,23 @@ You will need to edit the source code to change the cognito user pool if you wou
 This is intended to be fixed in version 2 of this software.
 
 - Create a new user. (Again, manual authorization in Amazon Cognito is required.)
-  ![Signup Screen](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.33.38%20AM.png)
+
+![Signup Screen](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.33.38%20AM.png)
   
 - Login using username and password after approval.
-  ![Login Screen](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.33.55%20AM.png)
+
+![Login Screen](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.33.55%20AM.png)
   
 - Chirps can be viewed on the main page.
-  ![Main Page](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.34.16%20AM.png)
+
+![Main Page](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.34.16%20AM.png)
   
 - A single user's chirps may be viewed by clicking their username.
 - New chirps can be posted using the box at the top of the page.
 
 - If you click on Settings, you can update your bio or delete your account.
-  ![Settings Page](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.34.37%20AM.png)
+
+![Settings Page](https://github.com/dague00/chirp-react/blob/7db62bcabf333f01137a81222d2b0dfb51ff191f/screenshots/Screen%20Shot%202021-07-21%20at%209.34.37%20AM.png)
 
 ## Contributors
 
