@@ -17,7 +17,7 @@ This social media application allows for text "chirps" to be sent for all to see
 - Users can post new chirps
 - Users can view all existing chirps
 - Users can view all chirps by a single user
-- Users can set their bio and can view the bios of others
+- Users can set their bio
 - Users can logout of the application when finished
 
 To-do list:
@@ -25,6 +25,7 @@ To-do list:
 - Users should be able to like chirps
 - Users should be able to comment on chirps
 - Users should be able to change profile pictures
+- Users should be able to see others' bios
 - Users should be able to self-validate their emails/username
 
 ## Getting Started
@@ -34,7 +35,8 @@ Please make sure custom ```.htaccess``` files are allowed. Open your browser to 
 
 To Develop:
 - Make sure you have NodeJS installed.
-- Clone the repo: ```git clone https://github.com/dague00/chirp-react.git```.
+- Clone the repo: ```git clone https://github.com/dague00/chirp-react.git path-to-local-folder```.
+- Enter the directory of your folder on your terminal: ```cd path-to-local-folder```.
 - Run ```npm install``` to get dependencies installed.
 - Run ```npm start``` to run the app in development mode. (This should NOT be used for deployment. See above.)
 
