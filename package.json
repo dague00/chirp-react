@@ -1,6 +1,14 @@
 {
   "name": "chirp-react",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "contributors": [
+    "Caleb Sword",
+    "Marc Skwarczynski",
+    "Red Oral",
+    "Daguinson Fleurantin"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dague00/chirp-react",
   "private": true,
   "dependencies": {
     "@aws-amplify/auth": "^4.1.0",
